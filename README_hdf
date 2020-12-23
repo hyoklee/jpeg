@@ -1,0 +1,22 @@
+The files for building libjpeg were moved into src and examples directories to 
+facilitate building with cmake.  Consequently, to allow building libjpeg with 
+autotools using the same source tarfile, Makefile.ams were added to those 
+directories, configure.ac was updated for the added files and for changed 
+location of jpeglib.h, and the following process was used to generate 
+Makefile.ins:
+
+1. Running current versions of autoconf, autoheader and automake caused errors 
+when processing configure.ac.  Using versions close to those specified in the 
+original files was more successful.  To do that, PATH was set to 
+/mnt/hdf/packages/autoconf/autoconf-2.68/bin:/mnt/hdf/packages/automake/
+automake-1.11.1/bin:/mnt/hdf/packages/libtool/libtool-2.4.2/bin:/mnt/hdf/
+packages/m4/m4-1.4.14/bin:$PATH.  This shouldn't be needed again unless changes 
+are made to configure or Makefile.ams.
+
+2. configure expects jconfig.cfg in the top level directory for generating 
+jconfig.h.  The original file is available in config/orig_config.  Step 1 
+overwrites jconfig.cfg in the top level directory with a new version that 
+doesn't enable writing bmp and ppm files, causing make check to fail.  Copying 
+the file from config/orig_config to the top directory before running configure 
+seems to solve the problem.
+ 

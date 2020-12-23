@@ -1,0 +1,19 @@
+
+                      Release notes for JPEG 9c
+                          September 8, 2014
+
+
+Bug fixes:
+
+   -- None.
+
+New features:
+
+   -- CMake support added.
+
+Know problems:
+
+   -- None.
+
+User support:
+    Report all problems to help@hdfgroup.org.
